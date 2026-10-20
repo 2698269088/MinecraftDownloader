@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>MinecraftDownloader</AssemblyName>
+    <RootNamespace>MinecraftDownloader</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\app.ico</ApplicationIcon>
+    <Platforms>AnyCPU;x64</Platforms>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <SatelliteResourceLanguages>zh-Hans;en</SatelliteResourceLanguages>
+    <AssemblyTitle>MinecraftDownloader</AssemblyTitle>
+    <Product>MinecraftDownloader</Product>
+    <Description>Minecraft 版本下载器（界面参考 PCL Community Edition）</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\app.ico" />
+    <Resource Include="Assets\box.png" />
+  </ItemGroup>
+
+</Project>

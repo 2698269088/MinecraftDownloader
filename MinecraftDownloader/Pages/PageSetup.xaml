@@ -1,0 +1,84 @@
+<UserControl x:Class="MinecraftDownloader.Pages.PageSetup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             FontFamily="{DynamicResource LaunchFontFamily}">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="24,18,24,24" MaxWidth="760" HorizontalAlignment="Left">
+            <Border Style="{StaticResource MyCard}" Margin="0,0,0,14">
+                <StackPanel>
+                    <TextBlock Text="游戏设置" Style="{StaticResource SectionTitle}" />
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="游戏目录" />
+                        <TextBox x:Name="TextGameDir" Grid.Column="1" Margin="0,0,8,0" />
+                        <Button Grid.Column="2" Content="浏览" Style="{DynamicResource SecondaryButton}" Width="70"
+                                Height="30" Click="BtnBrowseGameDir_Click" />
+
+                        <TextBlock Grid.Row="1" Text="Java" Margin="0,12,0,0" />
+                        <ComboBox x:Name="ComboJava" Grid.Row="1" Grid.Column="1" Margin="0,12,8,0"
+                                  DisplayMemberPath="Display" />
+                        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" Margin="0,12,0,0">
+                            <Button Content="自动检测" Style="{DynamicResource SecondaryButton}" Height="30"
+                                    Click="BtnDetectJava_Click" />
+                            <Button Content="浏览" Style="{DynamicResource SecondaryButton}" Height="30"
+                                    Margin="6,0,0,0" Click="BtnBrowseJava_Click" />
+                        </StackPanel>
+
+                        <TextBlock Grid.Row="2" Text="下载线程" Margin="0,12,0,0" />
+                        <Grid Grid.Row="2" Grid.Column="1" Margin="0,12,8,0" HorizontalAlignment="Left" Width="200">
+                            <TextBox x:Name="TextThreads" Height="30" Padding="7,0,52,0" />
+                            <TextBlock Text="1 - 64" HorizontalAlignment="Right" Margin="0,0,9,0"
+                                       Style="{StaticResource SecondaryText}" IsHitTestVisible="False" />
+                        </Grid>
+
+                        <TextBlock Grid.Row="3" Text="下载源" Margin="0,12,0,0" />
+                        <ComboBox x:Name="ComboMirror" Grid.Row="3" Grid.Column="1" Margin="0,12,8,0"
+                                  HorizontalAlignment="Left" Width="200">
+                            <ComboBoxItem Content="BMCLAPI 镜像（推荐国内）" IsSelected="True" />
+                            <ComboBoxItem Content="Mojang 官方源" />
+                        </ComboBox>
+                    </Grid>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,22,0,0">
+                        <Button Content="保存设置" Style="{DynamicResource PrimaryButton}" Width="110" Height="34"
+                                Click="BtnSave_Click" />
+                        <Button Content="打开游戏目录" Style="{DynamicResource SecondaryButton}" Height="34"
+                                Margin="10,0,0,0" Click="BtnOpenGameDir_Click" />
+                        <TextBlock x:Name="LabStatus" Style="{StaticResource SecondaryText}" Margin="14,0,0,0"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource MyCard}">
+                <StackPanel>
+                    <TextBlock Text="关于" Style="{StaticResource SectionTitle}" />
+                    <TextBlock Text="MinecraftDownloader" FontSize="16" FontWeight="SemiBold" />
+                    <TextBlock Style="{StaticResource SecondaryText}" Margin="0,8,0,0" TextWrapping="Wrap" LineHeight="21">
+                        <Run Text="基于 Mojang / Fabric / Quilt / Forge / NeoForge / Modrinth 公共接口实现的 Minecraft 下载器。" />
+                        <LineBreak />
+                        <Run Text="界面风格完全参考 Plain Craft Launcher Community Edition（PCL CE）。" />
+                        <LineBreak />
+                        <Run Text="支持：原版游戏下载、模组加载器安装、Modrinth 模组下载、整合包安装与导出。" />
+                        <LineBreak />
+                        <Run Text="本工具只负责下载与安装，不包含游戏启动功能；请使用 PCL、HMCL 等启动器启动。" />
+                    </TextBlock>
+                    <TextBlock x:Name="LabPaths" Style="{StaticResource SecondaryText}" Margin="0,12,0,0"
+                               TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

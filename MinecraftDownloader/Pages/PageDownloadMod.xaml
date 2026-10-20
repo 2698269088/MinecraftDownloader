@@ -1,0 +1,97 @@
+<UserControl x:Class="MinecraftDownloader.Pages.PageDownloadMod"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             FontFamily="{DynamicResource LaunchFontFamily}">
+    <Grid Margin="20,18,20,16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Border Style="{StaticResource MyCard}" Padding="16" Margin="0,0,0,12">
+            <StackPanel>
+                <TextBlock Text="下载模组" Style="{StaticResource CardTitle}" />
+                <TextBlock Text="数据来自 Modrinth，模组会直接下载到所选实例的 mods 文件夹" Style="{StaticResource SecondaryText}"
+                           Margin="0,5,0,12" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="安装到：" Margin="0,0,8,0" />
+                    <ComboBox x:Name="ComboInstance" Grid.Column="1" DisplayMemberPath="DisplayName"
+                              SelectionChanged="ComboInstance_SelectionChanged" />
+                    <TextBlock Text="加载器：" Grid.Column="2" Margin="16,0,8,0" />
+                    <ComboBox x:Name="ComboLoader" Grid.Column="3" Width="120">
+                        <ComboBoxItem Content="自动" IsSelected="True" />
+                        <ComboBoxItem Content="Fabric" />
+                        <ComboBoxItem Content="Forge" />
+                        <ComboBoxItem Content="Quilt" />
+                        <ComboBoxItem Content="NeoForge" />
+                    </ComboBox>
+                    <Grid Grid.Column="5">
+                        <TextBox x:Name="TextSearch" Width="220" Padding="9,0,34,0"
+                                 KeyDown="TextSearch_KeyDown" ToolTip="搜索模组（回车）" />
+                        <Button Style="{DynamicResource TitleButton}" Width="28" Height="28" HorizontalAlignment="Right"
+                                Margin="0,0,1,0" Click="BtnSearch_Click" ToolTip="搜索">
+                            <Path Data="{StaticResource IconSearch}" Stroke="{DynamicResource ColorBrushGray2}"
+                                  StrokeThickness="1.5" Width="14" Height="14" Stretch="Uniform" />
+                        </Button>
+                    </Grid>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1" Style="{StaticResource MyCardTight}">
+            <Grid>
+                <ListBox x:Name="ListMods" Margin="6">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="10,8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="48" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Border Width="44" Height="44" CornerRadius="6" Background="{DynamicResource ColorBrushGray8}"
+                                        VerticalAlignment="Top">
+                                    <Image Source="{Binding IconUrl}" Stretch="UniformToFill" />
+                                </Border>
+                                <StackPanel Grid.Column="1" Margin="12,0,10,0">
+                                    <TextBlock Text="{Binding Title}" FontSize="13.5" FontWeight="SemiBold" />
+                                    <TextBlock Text="{Binding Description}" Style="{StaticResource SecondaryText}"
+                                               TextWrapping="Wrap" Margin="0,4,0,0" MaxHeight="34" />
+                                    <TextBlock Style="{StaticResource SecondaryText}" Margin="0,4,0,0">
+                                        <Run Text="{Binding Author}" />
+                                        <Run Text="  ·  下载 " />
+                                        <Run Text="{Binding Downloads, StringFormat=N0}" />
+                                    </TextBlock>
+                                </StackPanel>
+                                <Button Grid.Column="2" Content="下载" Height="28" Width="64"
+                                        VerticalAlignment="Center" Style="{DynamicResource SecondaryButton}"
+                                        Click="BtnDownloadMod_Click" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <TextBlock x:Name="LabEmpty" Text="输入关键词搜索模组" HorizontalAlignment="Center"
+                           VerticalAlignment="Center" Style="{StaticResource SecondaryText}" />
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="2" Margin="0,10,0,0">
+            <TextBlock x:Name="LabStatus" Text="" Style="{StaticResource SecondaryText}" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="BtnMore" Content="加载更多" Style="{DynamicResource LinkButton}"
+                        Visibility="Collapsed" Click="BtnMore_Click" />
+                <ProgressBar x:Name="BarBusy" Width="100" Margin="10,0,0,0" IsIndeterminate="True"
+                             Visibility="Collapsed" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>
